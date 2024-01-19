@@ -1,5 +1,9 @@
 package com.test.qa.tests;
 
+import static org.testng.Assert.assertEqualsDeep;
+
+import java.util.HashSet;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -7,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.google.common.collect.Sets;
 import com.test.qa.base.TestBase;
 import com.test.qa.pages.LoginPage;
 import com.test.qa.pages.HomePage;
@@ -45,6 +50,15 @@ public class HomePageTest extends TestBase  {
 	public void ValidateItemPrice()
 	{
 		homePage.priceOfItem();  
+	}
+	
+	@Test (priority = 4)
+	public void ValidateItemsPresent()
+	{
+		HashSet<String> excpectedset = Sets.newHashSet("Sauce Labs Bike Light", "Test.allTheThings() T-Shirt (Red)", "Sauce Labs Backpack", "Sauce Labs Bolt T-Shirt", "Sauce Labs Fleece Jacket", "Sauce Labs Onesie");
+		HashSet<String> actaulSet = homePage.itemspresent(); 
+		assertEqualsDeep(actaulSet, excpectedset, "Items not pre");
+		
 	}
 	
 	@AfterTest

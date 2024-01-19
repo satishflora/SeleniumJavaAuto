@@ -24,7 +24,7 @@ public class LoginPageTest extends TestBase {
 	@BeforeTest
 	public void setUp()
 	{
-		initialization("edge");
+		initialization("chrome");
 		loginPage = new LoginPage(getDriver());
 		
 	}
